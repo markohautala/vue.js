@@ -9,14 +9,33 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Register',
-};
+<script setup>
+  import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
+  import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+  
+  const email = ref('');
+  const password = ref('');
+  const Router = useRouter();
+
+  const register = () => {
+    createUserWithEmailAndPassword(getAuth(), email.value, password.value)
+      .then((data) => {
+        console.log("User registered successfully");
+        Router.push('/feed');
+      })
+      .catch((error) => {
+        console.log(error.code);
+        alert(error.message);
+      });
+  };
+
+  const signInWithGoogle = () => {
+  };
 </script>
 
 <style scoped>
 h1 {
-  color: #333;
+  color: #bd5e5e;
 }
 </style>
