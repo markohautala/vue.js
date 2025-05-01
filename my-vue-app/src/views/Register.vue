@@ -3,22 +3,23 @@
     <h3>Register</h3>
     <p>Please fill in the form below to create an account.</p>
     <p>
-      <label for="email">Type your email here</label><br />
-      <input id="email" type="text" placeholder="Email" v-model="email" />
+      <input id="email" type="text" placeholder="Email" v-model="email" style="width: 80%; height: 40px; font-size: 16px;" />
     </p>
     <p>
-      <label for="password">Type your password here</label><br />
-      <input id="password" type="password" placeholder="Password" v-model="password" />
+      <input id="password" type="password" placeholder="Password" v-model="password" style="width: 80%; height: 40px; font-size: 16px;" />
     </p>
     <p><button @click="register">Register</button></p>
-    <p><button @click="signInWithGoogle">Sign In With Google</button></p>
+    <p>Or</p>
+    <p><button @click="signInWithGoogle"><font-awesome-icon :icon="['fab', 'google']" /> Sign In With Google</button></p>
+    <p><button @click="signInWithGithub"><font-awesome-icon :icon="['fab', 'github']" /> Sign In With Github</button></p>
+    <p>Already have an account? <router-link to="/sign-in">Login</router-link></p>
   </div>
 </template>
 
 <script setup>
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
-  import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+  import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from 'firebase/auth';
 
   const email = ref('');
   const password = ref('');
@@ -37,7 +38,32 @@
   };
 
   const signInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(getAuth(), provider)
+      .then((result) => {
+        console.log("User signed in with Google successfully");
+        Router.push('/feed');
+      })
+      .catch((error) => {
+        console.log(error.code);
+        alert(error.message);
+      });
   };
+
+  const signInWithGithub = () => {
+    const provider = new GithubAuthProvider();
+    signInWithPopup(getAuth(), provider)
+      .then((result) => {
+        console.log("User signed in with Github successfully");
+        Router.push('/feed');
+      })
+      .catch((error) => {
+        console.log(error.code);
+        alert(error.message);
+      });
+  };
+
+
 </script>
 
 <style scoped>
@@ -48,8 +74,8 @@ h3 {
 input {
   margin: 5px 0;
   padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 2px solid #230000;
+  border-radius: 15px;
 }
 
 </style>

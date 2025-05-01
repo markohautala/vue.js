@@ -4,9 +4,9 @@
 <template>
   <nav>
     <router-link to="/"> Home </router-link>
-    <router-link to="/feed"> Feed </router-link>
-    <router-link to="/register"> Register </router-link>
-    <router-link to="/sign-in"> Login </router-link>
+    <router-link to="/feed" v-if="isLoggedIn"> Feed </router-link>
+    <router-link to="/register" v-if="!isLoggedIn"> Register </router-link>
+    <router-link to="/sign-in" v-if="!isLoggedIn"> Login </router-link>
     <button @click="handleSignOut" v-if="isLoggedIn">Sign Out</button>
   </nav>
   <router-view />
@@ -56,7 +56,7 @@ nav a {
   color: #ff00a6;
 }
 nav a:hover {
-  text-decoration: underline;
+  text-decoration: underline
 }
 nav {
   display: flex;
