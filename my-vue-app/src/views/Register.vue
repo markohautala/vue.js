@@ -2,8 +2,14 @@
   <div>
     <h3>Register</h3>
     <p>Please fill in the form below to create an account.</p>
-    <p>Type your email here <input type="text" placeholder="Email" v-model="email"/></p>
-    <p>Type your password here <input type="password" placeholder="Password" v-model="password"/></p>
+    <p>
+      <label for="email">Type your email here</label><br />
+      <input id="email" type="text" placeholder="Email" v-model="email" />
+    </p>
+    <p>
+      <label for="password">Type your password here</label><br />
+      <input id="password" type="password" placeholder="Password" v-model="password" />
+    </p>
     <p><button @click="register">Register</button></p>
     <p><button @click="signInWithGoogle">Sign In With Google</button></p>
   </div>
@@ -35,7 +41,15 @@
 </script>
 
 <style scoped>
-h1 {
-  color: #bd5e5e;
+h3 {
+  color: #0011ff;
 }
+
+input {
+  margin: 5px 0;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 </style>

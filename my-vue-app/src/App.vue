@@ -23,14 +23,15 @@ const isLoggedIn = ref(false);
 const handleSignOut = () => {
   signOut(auth).then(() => {
     router.push('/sign-in');
+    isLoggedIn.value = false;
   }).catch((error) => {
     console.error('Sign out error:', error);
   });
 };
 
 const auth = getAuth();
+
 onMounted(() => {
-  auth = getAuth();
   onAuthStateChanged(auth, (user) => {
     if (user) {
       isLoggedIn.value = true;
@@ -43,16 +44,37 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f8f9fa;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #ff00a6;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+nav a:hover {
+  text-decoration: underline;
 }
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #f8f9fa;
+}
+
+nav button {
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px;
+  justify-content: center;
+}
+
+
 </style>

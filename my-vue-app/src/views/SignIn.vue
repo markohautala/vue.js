@@ -2,8 +2,14 @@
   <div>
     <h3>Sign In</h3>
     <p>Please fill in the form below to sign in.</p>
-    <p>Type your email here <input type="text" placeholder="Email" v-model="email" /></p>
-    <p>Type your password here <input type="password" placeholder="Password" v-model="password" /></p>
+    <p>
+      <label for="email">Type your email here</label><br />
+      <input id="email" type="text" placeholder="Email" v-model="email" />
+    </p>
+    <p>
+      <label for="password">Type your password here</label><br />
+      <input id="password" type="password" placeholder="Password" v-model="password" @keyup.enter="signIn"/>
+    </p>
     <p v-if="errMsg" class="error">{{ errMsg }}</p>
     <p><button @click="signIn">Sign In</button></p>
     <p><button @click="signInWithGoogle">Sign In With Google</button></p>
@@ -52,9 +58,16 @@ const signInWithGoogle = () => {
 
 <style scoped>
 h3 {
-  color: #0f0a39;
+  color: #3122b6;
 }
 .error {
   color: red;
+}
+
+input {
+  margin: 5px 0;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 </style>
