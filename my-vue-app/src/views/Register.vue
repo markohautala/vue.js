@@ -6,7 +6,7 @@
       <input id="email" type="text" placeholder="Email" v-model="email" style="width: 80%; height: 40px; font-size: 16px;" />
     </p>
     <p>
-      <input id="password" type="password" placeholder="Password" v-model="password" style="width: 80%; height: 40px; font-size: 16px;" />
+      <input id="password" type="password" placeholder="Password" v-model="password" @keyup.enter="signIn" style="width: 80%; height: 40px; font-size: 16px;" />
     </p>
     <p><button @click="register">Register</button></p>
     <p>Or</p>
