@@ -3,20 +3,17 @@ import './style.css'
 import App from './App.vue'
 import router from './router'
 
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+// Your web app's Firebase configuration (loaded from .env)
 const firebaseConfig = {
-  apiKey: "AIzaSyC2-ivyvDenKmKEGkXBfmZjFPSYC-ZvP3A",
-  authDomain: "vue-firebase-auth-7c95f.firebaseapp.com",
-  projectId: "vue-firebase-auth-7c95f",
-  storageBucket: "vue-firebase-auth-7c95f.firebasestorage.app",
-  messagingSenderId: "914367416383",
-  appId: "1:914367416383:web:cceb179fc4cb0ab05fd08a"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 // Initialize Firebase
